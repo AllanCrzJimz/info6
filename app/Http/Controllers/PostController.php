@@ -14,6 +14,7 @@ class PostController extends Controller
     public function index()
     {
         //
+        return view('dashboard.posts');
     }
 
     //Manda a la vista para mostrar algo
@@ -25,6 +26,7 @@ class PostController extends Controller
     public function create()
     {
         //
+        return view('dashboard.posts');
     }
 
     //Complemento de create, recibe los datos cuando ya se lleno el formulario, encargado de llenar BD//
@@ -60,7 +62,6 @@ class PostController extends Controller
      */
     public function edit($id)
 
-        return
     {
         //
     }
