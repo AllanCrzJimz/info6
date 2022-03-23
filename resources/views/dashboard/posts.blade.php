@@ -2,12 +2,13 @@
 
 @section('content') 
 @include('fragments.validation-errors')
+@include ('fragments.sesion')
 <h1>Post</h1>
 <form method="post" action="{{route("post.store")}}" >
     @csrf
     <div class="form-group">
         <label for="tittle">Titulo</label>
-        <input type="text" class="form-control" name="tittle" id="tittle">
+        <input type="text" class="form-control" name="title" id="tittle">
     </div>
 
     <div class="form-group">
