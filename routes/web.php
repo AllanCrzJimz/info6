@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
@@ -15,10 +16,20 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
+    return view('welcome');
+});
+
+Route::get('/category', function(){
     return view('welcome');
 });
 
 //
 
 Route::resource('/post', PostController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('/category', [App\Http\Controllers\CategoryController::class, 'category']);

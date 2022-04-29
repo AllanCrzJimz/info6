@@ -12,9 +12,8 @@
 <body>
     
     <div class="container">
+        @include ('fragments.nav-bar')
         @yield('content')
-
-        
 
     </div>
 

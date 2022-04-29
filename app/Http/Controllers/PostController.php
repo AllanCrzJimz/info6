@@ -16,7 +16,14 @@ class PostController extends Controller
     public function index()
     {
         //
-        return view('dashboard.posts');
+        $posts = Posts::orderBy('created_at', 'desc')->paginate(2);
+        //dd($posts);
+        return view('dashboard.post.posts', [
+            'posts'=> $posts,
+            'categories' => $posts
+        
+        
+        ]);
     }
 
     //Manda a la vista para mostrar algo
@@ -28,7 +35,9 @@ class PostController extends Controller
     public function create()
     {
         //
-        return view('dashboard.posts');
+        return view('dashboard.post.create', [
+            'post' =>new Posts()
+        ]);
     }
 
     //Complemento de create, recibe los datos cuando ya se lleno el formulario, encargado de llenar BD//
@@ -73,10 +82,14 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Posts $post)
 
     {
         //
+        //dd($post);
+        return view('dashboard.post.edit', [
+            'post' => $post
+        ]);
     }
 
     //
@@ -87,10 +100,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StorePostRequest $request, Posts $post)
     {
-        //
+        //Post::where('id', $id)->update($request->validated());
+        $post->update($request->validated());
+        return back()->with('status', 'Post updated successfully');
 
+        //dd($request->validated());
     }
 
     /**
@@ -99,8 +115,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Posts $post)
     {
         //
+        //dd($post);
+        $post->delete();
+        return back()->with('status', 'Post deleted successfully');
+
+
     }
 }
